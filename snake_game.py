@@ -21,16 +21,16 @@ class MyGame(arcade.Window):
         Initializer
         """
         super().__init__(width, height, title)
-        super().set_update_rate(1 / 4)
+        super().set_update_rate(1 / 5)
         self.direction_list = [False, False, False, False]
         arcade.set_background_color(arcade.color.BANANA_MANIA)
 
     def setup(self):
         """ Set up the game and initialize the variables. """
-        self.snake = snake_class.SnakeHead()
-        #self.snake = snake_class.Snake()
-        self.snake.center_x = SCREEN_WIDTH / 2
-        self.snake.center_y = SCREEN_HEIGHT / 2
+        #self.snake = snake_class.SnakeHead()
+        self.snake = snake_class.Snake(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+        #self.snake.center_x = SCREEN_WIDTH / 2
+        #self.snake.center_y = SCREEN_HEIGHT / 2
         self.apple = apple.Apple("myapple.png", SPRITE_SCALING)
         coord = self.apple.new_apple2(SCREEN_WIDTH, SCREEN_HEIGHT, MOVEMENT_SPEED)
         self.apple.center_x = coord[0]
@@ -43,14 +43,16 @@ class MyGame(arcade.Window):
         arcade.start_render()
 
         self.apple.draw()
-        self.snake.draw()
+        #self.snake.draw()
+        self.snake.snake_body().draw()
 
 
     def on_update(self, delta_time):
         """ Movement and game logic """
         self.snake.change_x = 0
         self.snake.change_y = 0
-        self.apple.new_apple(SCREEN_WIDTH, SCREEN_HEIGHT, MOVEMENT_SPEED, self.snake.center_x, self.snake.center_y)
+        if self.apple.new_apple(SCREEN_WIDTH, SCREEN_HEIGHT, MOVEMENT_SPEED, self.snake.center_x, self.snake.center_y):
+            self.snake.next = True
         if self.direction_list[0]:
             self.snake.change_y = MOVEMENT_SPEED
         elif self.direction_list[1]:
@@ -61,6 +63,7 @@ class MyGame(arcade.Window):
             self.snake.change_x = MOVEMENT_SPEED
 
         self.snake.update()
+        self.snake.next = False
 
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed. """
