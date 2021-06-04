@@ -192,3 +192,37 @@ class GameOverView(arcade.View):
             center_x=self.window.width // 2,
             center_y=y_slot * 4,
         ))
+
+class AuthorView(arcade.View):
+    """ View to show when game is over """
+
+    def __init__(self):
+        """ This is run once when we switch to this view """
+        super().__init__()
+        self.texture = arcade.load_texture("asserts/image/author.png")
+        self.ui_manager = UIManager()
+
+    def on_draw(self):
+        """ Draw this view """
+        arcade.start_render()
+        self.texture.draw_sized(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2,
+                                SCREEN_WIDTH, SCREEN_HEIGHT)
+
+    def on_hide_view(self):
+        self.ui_manager.unregister_handlers()
+    
+    def on_show_view(self):
+        self.setup()
+
+    def setup(self):
+        """ Set up this view. """
+        self.ui_manager.purge_ui_elements()
+
+
+        button = buttons.MenuButton(
+            'Menu',
+            center_x=self.window.width // 2,
+            center_y=self.window.height // 6,
+            width=200,
+        )
+        self.ui_manager.add_ui_element(button)
