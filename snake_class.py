@@ -57,6 +57,7 @@ class Snake:
         self.coord_list = [(screen_width / 2, screen_hight / 2)]
         self.head_posx = 0
         self.head_posy = 0
+        self.dead = False
 
     def update(self):
         """ Move the player """
@@ -69,7 +70,8 @@ class Snake:
             del self.coord_list[0]
         if self.next == True:
             self.length_snake += 1
-
+        if self.coord_list[-1] in self.coord_list[:-1]:
+            self.dead = True
 
         # Check for out-of-bounds
         #if self.center_x + 25 < 0:

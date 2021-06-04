@@ -32,9 +32,9 @@ class MyGame(arcade.Window):
         #self.snake.center_x = SCREEN_WIDTH / 2
         #self.snake.center_y = SCREEN_HEIGHT / 2
         self.apple = apple.Apple("myapple.png", SPRITE_SCALING)
-        coord = self.apple.new_apple2(SCREEN_WIDTH, SCREEN_HEIGHT, MOVEMENT_SPEED)
-        self.apple.center_x = coord[0]
-        self.apple.center_y = coord[1]
+        self.apple.new_apple(SCREEN_WIDTH, SCREEN_HEIGHT, MOVEMENT_SPEED, self.snake.coord_list)
+        #self.apple.center_x = coord[0]
+        #self.apple.center_y = coord[1]
 
     def on_draw(self):
         """
@@ -51,7 +51,7 @@ class MyGame(arcade.Window):
         """ Movement and game logic """
         self.snake.change_x = 0
         self.snake.change_y = 0
-        if self.apple.new_apple(SCREEN_WIDTH, SCREEN_HEIGHT, MOVEMENT_SPEED, self.snake.center_x, self.snake.center_y):
+        if self.apple.new_apple_ate(SCREEN_WIDTH, SCREEN_HEIGHT, MOVEMENT_SPEED, self.snake.center_x, self.snake.center_y, self.snake.coord_list):
             self.snake.next = True
         if self.direction_list[0]:
             self.snake.change_y = MOVEMENT_SPEED

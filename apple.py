@@ -5,11 +5,14 @@ SCREEN_WIDTH = 500
 SCREEN_HEIGHT = 500
 
 class Apple(arcade.Sprite):
-    def new_apple2(self, screen_width, screen_hight, snake_thick):
-        #if self.eating == True:
+    def new_apple(self, screen_width, screen_hight, snake_thick, coord):
         x = round(random.randrange(0, screen_width - snake_thick) / snake_thick) * snake_thick #cos jest nie tak
         y = round(random.randrange(0, screen_hight - snake_thick) / snake_thick) * snake_thick #cos jest nie tak
-        return (x, y)
+        while (x, y) in coord:
+            x = round(random.randrange(0, screen_width - snake_thick) / snake_thick) * snake_thick #cos jest nie tak
+            y = round(random.randrange(0, screen_hight - snake_thick) / snake_thick) * snake_thick
+        self.center_x = x
+        self.center_y = y
 
     def update(self):
         self.center_x = self.new_apple[0]
@@ -31,9 +34,8 @@ class Apple(arcade.Sprite):
         else:
             return False
 
-    def new_apple(self, screen_width, screen_hight, snake_thick, x, y):
+    def new_apple_ate(self, screen_width, screen_hight, snake_thick, x, y, coord):
         if self.eating(x, y) == True:
-            self.center_x = round(random.randrange(0, screen_width - snake_thick) / snake_thick) * snake_thick #cos jest nie tak
-            self.center_y = round(random.randrange(0, screen_hight - snake_thick) / snake_thick) * snake_thick #cos jest nie tak
+            self.new_apple(screen_width, screen_hight, snake_thick, coord)
             return True
         
