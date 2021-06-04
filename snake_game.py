@@ -1,57 +1,52 @@
 import arcade
 import snake_class
 import apple
+import menu
+from settings import *
 
-SPRITE_SCALING = 0.5
-
-SCREEN_WIDTH = 500
-SCREEN_HEIGHT = 500
-SCREEN_TITLE = "Snake"
-
-MOVEMENT_SPEED = 25
-
-
-class MyGame(arcade.Window):
+class MyGame(arcade.View):
     """
     Main application class.
     """
 
-    def __init__(self, width, height, title):
+    def __init__(self):
         """
         Initializer
         """
-        super().__init__(width, height, title)
-        super().set_update_rate(1 / 5)
+        super().__init__()
         self.direction_list = [False, False, False, False]
-        arcade.set_background_color(arcade.color.BANANA_MANIA)
+        self.background = None
 
     def setup(self):
         """ Set up the game and initialize the variables. """
-        #self.snake = snake_class.SnakeHead()
-        self.snake = snake_class.Snake(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
-        #self.snake.center_x = SCREEN_WIDTH / 2
-        #self.snake.center_y = SCREEN_HEIGHT / 2
-        self.apple = apple.Apple("myapple.png", SPRITE_SCALING)
-        self.apple.new_apple(SCREEN_WIDTH, SCREEN_HEIGHT, MOVEMENT_SPEED, self.snake.coord_list)
-        #self.apple.center_x = coord[0]
-        #self.apple.center_y = coord[1]
+        self.snake = snake_class.Snake(GAME_WIDTH / 2, GAME_HEIGHT / 2)
+        self.apple = apple.Apple("asserts/image/myapple.png", 0.5)
+        self.apple.new_apple(GAME_WIDTH, GAME_HEIGHT, MOVEMENT_SPEED, self.snake.coord_list)
+        self.background = arcade.load_texture("asserts/image/background.png")
 
     def on_draw(self):
         """
         Render the screen.
         """
         arcade.start_render()
+        arcade.draw_lrwh_rectangle_textured(0, 0,
+                                           SCREEN_WIDTH, SCREEN_HEIGHT,
+                                           self.background)
 
         self.apple.draw()
-        #self.snake.draw()
         self.snake.snake_body().draw()
+        arcade.draw_rectangle_outline(GAME_WIDTH/2, GAME_HEIGHT/2, GAME_WIDTH-25, GAME_HEIGHT-25, arcade.color.BLACK)
 
+        output = f"Score: {self.snake.score}"
+        arcade.draw_text(output, 16, 540, arcade.color.BLACK, 25)
 
     def on_update(self, delta_time):
         """ Movement and game logic """
         self.snake.change_x = 0
         self.snake.change_y = 0
-        if self.apple.new_apple_ate(SCREEN_WIDTH, SCREEN_HEIGHT, MOVEMENT_SPEED, self.snake.center_x, self.snake.center_y, self.snake.coord_list):
+        if self.apple.new_apple_ate(GAME_WIDTH, GAME_HEIGHT, MOVEMENT_SPEED, self.snake.center_x, self.snake.center_y, self.snake.coord_list):
+            eat_sound = arcade.load_sound("asserts/sound/apple_eat.ogg")
+            arcade.play_sound(eat_sound)
             self.snake.next = True
         if self.direction_list[0]:
             self.snake.change_y = MOVEMENT_SPEED
@@ -64,6 +59,11 @@ class MyGame(arcade.Window):
 
         self.snake.update()
         self.snake.next = False
+        if self.snake.dead == True:
+            game_over = arcade.load_sound("asserts/sound/game_over.ogg")
+            arcade.play_sound(game_over)
+            view = menu.GameOverView(self.snake.score)
+            self.window.show_view(view)
 
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed. """
@@ -81,12 +81,13 @@ class MyGame(arcade.Window):
             self.direction_list = list(map(lambda x: False, self.direction_list))
             self.direction_list[3] = True
 
-
 def main():
     """ Main method """
-    window = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
-    window.setup()
-    arcade.schedule(window.on_update, 40)
+    window = arcade.Window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
+    start = menu.StartView()
+    window.set_update_rate(1 / 7)
+    window.show_view(start)
+    
     arcade.run()
 
 
