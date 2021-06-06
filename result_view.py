@@ -25,8 +25,8 @@ class ResultView(arcade.View):
         #for count, i in enumerate(results_read.reading("result_level1.csv")):
         #results_read.exist_result("result_level1.csv")
         for index, row in pd.read_csv("result_level1.csv").iterrows():
-            arcade.draw_text(str(row["points"]), SCREEN_WIDTH/4, 419-index*36, arcade.color.BLACK, 25, anchor_x="center", anchor_y="center", align="center")
-            arcade.draw_text(str(row["date"]), 3*SCREEN_WIDTH/4, 419-index*36, arcade.color.BLACK, 25, anchor_x="center", anchor_y="center", align="center")
+            arcade.draw_text(str(row["points"]), SCREEN_WIDTH/4, 437-index*36, arcade.color.BLACK, 25, anchor_x="center", anchor_y="center", align="center")
+            arcade.draw_text(str(row["date"]), 3*SCREEN_WIDTH/4, 437-index*36, arcade.color.BLACK, 25, anchor_x="center", anchor_y="center", align="center")
         for i in range(10):    
             arcade.draw_line(25, 419-i*36, 475, 419-i*36, arcade.color.BLACK)
             #arcade.draw_line(25, 430-index*30-15, 475, 430-index*30-15, arcade.color.BLACK)
@@ -77,8 +77,8 @@ class ResultView2(arcade.View):
         #for count, i in enumerate(results_read.reading("result_level2.csv")):
         #results_read.exist_result("result_leve2.csv")
         for index, row in pd.read_csv("result_level2.csv").iterrows():
-            arcade.draw_text(str(row["points"]), SCREEN_WIDTH/4, 430-index*30, arcade.color.BLACK, 25, anchor_x="center", anchor_y="center", align="center")
-            arcade.draw_text(str(row["date"]), 3*SCREEN_WIDTH/4, 430-index*30, arcade.color.BLACK, 25, anchor_x="center", anchor_y="center", align="center")
+            arcade.draw_text(str(row["points"]), SCREEN_WIDTH/4, 437-index*36, arcade.color.BLACK, 25, anchor_x="center", anchor_y="center", align="center")
+            arcade.draw_text(str(row["date"]), 3*SCREEN_WIDTH/4, 437-index*36, arcade.color.BLACK, 25, anchor_x="center", anchor_y="center", align="center")
         for i in range(10):
             #arcade.draw_line(25, 455-index*30-15, 475, 430-index*30-15, arcade.color.BLACK)
             arcade.draw_line(25, 419-i*36, 475, 419-i*36, arcade.color.BLACK)
@@ -93,7 +93,7 @@ class ResultView2(arcade.View):
         """ Set up this view. """
         self.ui_manager.purge_ui_elements()
         y_slot = self.window.height // 12
-        results_read.exist_result("result_leve2.csv")
+        results_read.exist_result("result_level2.csv")
         button = buttons.MenuButton(
             'Menu',
             center_x=self.window.width // 4,

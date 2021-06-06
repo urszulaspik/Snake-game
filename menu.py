@@ -93,10 +93,10 @@ class GameOverView(arcade.View):
 
     def on_hide_view(self):
         self.ui_manager.unregister_handlers()
+        #print(self.ui_manager.find_by_id("username").text)
     
     def on_show_view(self):
         self.setup()
-
 
     def setup(self):
         """ Set up this view. """
@@ -130,7 +130,8 @@ class GameOverView(arcade.View):
         ui_input_box = arcade.gui.UIInputBox(
             center_x = self.window.width // 2,
             center_y = y_slot*4,
-            width = 250
+            width = 250,
+            id = "username"
         )
         ui_input_box.text = "User Name"
         ui_input_box.cursor_index = len(ui_input_box.text) #?
