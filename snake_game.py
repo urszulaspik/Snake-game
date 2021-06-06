@@ -45,8 +45,7 @@ class MyGame(arcade.View):
         self.snake.change_x = 0
         self.snake.change_y = 0
         if self.apple.new_apple_ate(GAME_WIDTH, GAME_HEIGHT, MOVEMENT_SPEED, self.snake.center_x, self.snake.center_y, self.snake.coord_list):
-            eat_sound = arcade.load_sound("asserts/sound/apple_eat.ogg")
-            arcade.play_sound(eat_sound)
+            arcade.play_sound(SOUNDS["eat"])
             self.snake.next = True
         if self.direction_list[0]:
             self.snake.change_y = MOVEMENT_SPEED
@@ -60,8 +59,7 @@ class MyGame(arcade.View):
         self.snake.update()
         self.snake.next = False
         if self.snake.dead == True:
-            game_over = arcade.load_sound("asserts/sound/game_over.ogg")
-            arcade.play_sound(game_over)
+            arcade.play_sound(SOUNDS["dead"])
             view = menu.GameOverView(self.snake.score)
             self.window.show_view(view)
 

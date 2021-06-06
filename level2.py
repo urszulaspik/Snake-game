@@ -56,15 +56,14 @@ class MyGame2(arcade.View):
         self.snake.change_x = 0
         self.snake.change_y = 0
         if self.apple.new_apple_ate(GAME_WIDTH, GAME_HEIGHT, MOVEMENT_SPEED, self.snake.center_x, self.snake.center_y, self.snake.coord_list):
-            #eat_sound = arcade.load_sound("asserts/sound/apple_eat.ogg")
-            #arcade.play_sound(eat_sound)
+            arcade.play_sound(SOUNDS["eat"])
+            self.black_apple.new_apple(GAME_WIDTH, GAME_HEIGHT, MOVEMENT_SPEED, self.snake.coord_list+[(self.apple.center_x, self.apple.center_y)])
             self.snake.next = True
         if self.black_apple.new_apple_ate(GAME_WIDTH, GAME_HEIGHT, MOVEMENT_SPEED, self.snake.center_x, self.snake.center_y, self.snake.coord_list+[(self.apple.center_x, self.apple.center_y)]):
             if self.live > 1:
                 self.heart_list.pop()
                 self.live -= 1
-                heart = arcade.load_sound("asserts/sound/heart.ogg")
-                arcade.play_sound(heart)
+                arcade.play_sound(SOUNDS["heart"])
             else: 
                 self.snake.dead = True
         if self.direction_list[0]:
@@ -79,8 +78,7 @@ class MyGame2(arcade.View):
         self.snake.update()
         self.snake.next = False
         if self.snake.dead == True:
-            game_over = arcade.load_sound("asserts/sound/game_over.ogg")
-            arcade.play_sound(game_over)
+            arcade.play_sound(SOUNDS["dead"])
             view = menu.GameOverView2(self.snake.score)
             self.window.show_view(view)
 
