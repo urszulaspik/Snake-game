@@ -21,9 +21,9 @@ class MyGame(arcade.View):
     def setup(self):
         """ Set up the game and initialize the variables. """
         self.snake = snake_class.Snake(GAME_WIDTH / 2, GAME_HEIGHT / 2)
-        self.apple = apple.Apple("asserts/image/myapple.png", 0.5)
+        self.apple = apple.Apple(APPLE["good_apple"], 0.5)
         self.apple.new_apple(GAME_WIDTH, GAME_HEIGHT, MOVEMENT_SPEED, self.snake.coord_list)
-        self.background = arcade.load_texture("asserts/image/background.png")
+        self.background = arcade.load_texture(BACKGROUNDS["game"])
 
     def on_draw(self):
         """

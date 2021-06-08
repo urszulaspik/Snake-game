@@ -22,14 +22,14 @@ class MyGame2(arcade.View):
     def setup(self):
         """ Set up the game and initialize the variables. """
         self.snake = snake_class.Snake(GAME_WIDTH / 2, GAME_HEIGHT / 2)
-        self.apple = apple.Apple("asserts/image/myapple.png", 0.5)
+        self.apple = apple.Apple(APPLE["good_apple"], 0.5)
         self.apple.new_apple(GAME_WIDTH, GAME_HEIGHT, MOVEMENT_SPEED, self.snake.coord_list)
-        self.black_apple = apple.Apple("asserts/image/black_apple.png", 0.5)
+        self.black_apple = apple.Apple(APPLE["bad_apple"], 0.5)
         self.black_apple.new_apple(GAME_WIDTH, GAME_HEIGHT, MOVEMENT_SPEED, self.snake.coord_list+[(self.apple.center_x, self.apple.center_y)])
-        self.background = arcade.load_texture("asserts/image/background.png")
+        self.background = arcade.load_texture(BACKGROUNDS["game"])
         self.heart_list = arcade.SpriteList()
         for i in range(self.live):
-            heart = arcade.Sprite("asserts/image/heart.png", 1)
+            heart = arcade.Sprite(HEART["heart"], 1)
             heart.center_x = 465 -i*60
             heart.center_y = 550
             self.heart_list.append(heart)

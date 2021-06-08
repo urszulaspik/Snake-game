@@ -8,13 +8,13 @@ class SnakeHead(arcade.Sprite):
 
         self.scale = 0.5
         self.textures = []
-        texture = arcade.load_texture("asserts/image/snake_head_top.png")
+        texture = arcade.load_texture(SNAKEBODY["head_top"])
         self.textures.append(texture)
-        texture = arcade.load_texture("asserts/image/snake_head_bottom.png")
+        texture = arcade.load_texture(SNAKEBODY["head_bottom"])
         self.textures.append(texture)
-        texture = arcade.load_texture("asserts/image/snake_head_right.png")
+        texture = arcade.load_texture(SNAKEBODY["head_right"])
         self.textures.append(texture)
-        texture = arcade.load_texture("asserts/image/snake_head_left.png")
+        texture = arcade.load_texture(SNAKEBODY["head_left"])
         self.textures.append(texture)
         self.texture = texture
 
@@ -27,12 +27,6 @@ class SnakeHead(arcade.Sprite):
             self.texture = self.textures[2]
         elif self.change_x <= 0:
             self.texture = self.textures[3]
-
-class SnakeBody(arcade.Sprite):
-    def __init__(self):
-        super().__init__()
-        self.scale = 0.5
-        self.texture = arcade.load_texture("asserts/image/snake_body.png")
 
 class Snake:
     def __init__(self, screen_width, screen_hight):
@@ -75,7 +69,7 @@ class Snake:
         head.update()
         full_snake.append(head)
         for i in self.coord_list[0:-1]:
-            body = SnakeBody()
+            body = arcade.Sprite(SNAKEBODY["body"], head.scale)
             body.center_x = i[0]
             body.center_y = i[1]
             full_snake.append(body)

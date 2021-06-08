@@ -11,7 +11,7 @@ class StartView(arcade.View):
     def __init__(self):
         """ This is run once when we switch to this view """
         super().__init__()
-        self.texture = arcade.load_texture("asserts/image/start.png")
+        self.texture = arcade.load_texture(BACKGROUNDS["start"])
         self.ui_manager = UIManager()
 
     def on_draw(self):
@@ -95,7 +95,7 @@ class GameOverView(arcade.View):
     def __init__(self, score, user):
         """ This is run once when we switch to this view """
         super().__init__()
-        self.texture = arcade.load_texture("asserts/image/game_over.png")
+        self.texture = arcade.load_texture(BACKGROUNDS["game_over"])
         self.ui_manager = UIManager()
         self.score = score
         self.user = user
@@ -108,7 +108,6 @@ class GameOverView(arcade.View):
 
     def on_hide_view(self):
         self.ui_manager.unregister_handlers()
-        #print(self.ui_manager.find_by_id("username").text)
     
     def on_show_view(self):
         self.setup()
@@ -116,7 +115,7 @@ class GameOverView(arcade.View):
     def setup(self):
         """ Set up this view. """
         self.ui_manager.purge_ui_elements()
-        results_read.today_points_write("result_level1.csv", self.score, self.user.text)
+        results_read.today_points_write(RESULTS["level1"], self.score, self.user.text)
         y_slot = self.window.height // 6
 
         button = buttons.ExitButton(
@@ -143,16 +142,6 @@ class GameOverView(arcade.View):
         )
         self.ui_manager.add_ui_element(button)
 
-        #ui_input_box = arcade.gui.UIInputBox(
-        #    center_x = self.window.width // 2,
-        #    center_y = y_slot*4,
-        #    width = 250,
-        #    id = "username"
-        #)
-        #ui_input_box.text = "User Name"
-        #ui_input_box.cursor_index = len(ui_input_box.text) #?
-        #self.ui_manager.add_ui_element(ui_input_box)
-
         self.ui_manager.add_ui_element(arcade.gui.UILabel(
             f'Your score: {self.score}',
             center_x=self.window.width // 2,
@@ -165,7 +154,7 @@ class AuthorView(arcade.View):
     def __init__(self):
         """ This is run once when we switch to this view """
         super().__init__()
-        self.texture = arcade.load_texture("asserts/image/author.png")
+        self.texture = arcade.load_texture(BACKGROUNDS["author"])
         self.ui_manager = UIManager()
 
     def on_draw(self):
@@ -200,7 +189,7 @@ class RulesView(arcade.View):
     def __init__(self):
         """ This is run once when we switch to this view """
         super().__init__()
-        self.texture = arcade.load_texture("asserts/image/rules.png")
+        self.texture = arcade.load_texture(BACKGROUNDS["rules"])
         self.ui_manager = UIManager()
 
     def on_draw(self):
@@ -234,7 +223,7 @@ class GameOverView2(arcade.View):
     def __init__(self, score, user):
         """ This is run once when we switch to this view """
         super().__init__()
-        self.texture = arcade.load_texture("asserts/image/game_over.png")
+        self.texture = arcade.load_texture(BACKGROUNDS["game_over"])
         self.ui_manager = UIManager()
         self.score = score
         self.user = user
@@ -254,7 +243,7 @@ class GameOverView2(arcade.View):
     def setup(self):
         """ Set up this view. """
         self.ui_manager.purge_ui_elements()
-        results_read.today_points_write("result_level2.csv", self.score, self.user.text)
+        results_read.today_points_write(RESULTS["level2"], self.score, self.user.text)
         y_slot = self.window.height // 6
         button = buttons.ExitButton(
             'Exit',
