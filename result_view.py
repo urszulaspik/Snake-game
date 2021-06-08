@@ -2,7 +2,6 @@ import arcade
 from arcade.gui import UIManager
 import buttons
 from settings import *
-#import snake_game
 import results_read
 import pandas as pd
 
@@ -22,16 +21,20 @@ class ResultView(arcade.View):
                                 SCREEN_WIDTH, SCREEN_HEIGHT)
         arcade.draw_rectangle_outline(SCREEN_WIDTH/2, SCREEN_HEIGHT/2-25, SCREEN_WIDTH-50, 3*SCREEN_HEIGHT/5, arcade.color.BLACK)
         arcade.draw_line(175, 95, 175, 455, arcade.color.BLACK)
+        arcade.draw_text("Lp.", 50, 435, arcade.color.BLACK, 20, anchor_x="center", anchor_y="center", align="center")
+        arcade.draw_text("Points", 125, 435, arcade.color.BLACK, 20, anchor_x="center", anchor_y="center", align="center")
+        arcade.draw_text("Name", 250, 435, arcade.color.BLACK, 20, anchor_x="center", anchor_y="center", align="center")
+        arcade.draw_text("Date", 400, 435, arcade.color.BLACK, 20, anchor_x="center", anchor_y="center", align="center")
         for index, row in pd.read_csv(RESULTS["level1"]).iterrows():
-            arcade.draw_text(f"{index+1}.", 50, 437-index*36, arcade.color.BLACK, 18, anchor_x="center", anchor_y="center", align="center")
-            arcade.draw_text(str(row["points"]), 125, 437-index*36, arcade.color.BLACK, 18, anchor_x="center", anchor_y="center", align="center")
-            arcade.draw_text(str(row["user"]), 175, 437-index*36, arcade.color.BLACK, 18, width= 150, anchor_x="left", anchor_y="center", align="center")
-            arcade.draw_text(str(row["date"]), 325, 437-index*36, arcade.color.BLACK, 18, width= 150, anchor_x="left", anchor_y="center", align="center")
+            arcade.draw_text(f"{index+1}.", 50, 399-index*32, arcade.color.BLACK, 18, anchor_x="center", anchor_y="center", align="center")
+            arcade.draw_text(str(row["points"]), 125, 399-index*32, arcade.color.BLACK, 18, anchor_x="center", anchor_y="center", align="center")
+            arcade.draw_text(str(row["user"]), 250, 399-index*32, arcade.color.BLACK, 18, width= 145, anchor_x="center", anchor_y="center", align="center")
+            arcade.draw_text(str(row["date"]), 400, 399-index*32, arcade.color.BLACK, 18, width= 145, anchor_x="center", anchor_y="center", align="center")
         
         arcade.draw_line(75, 95, 75, 455, arcade.color.BLACK)
         arcade.draw_line(325, 95, 325, 455, arcade.color.BLACK)
         for i in range(10):
-            arcade.draw_line(25, 419-i*36, 475, 419-i*36, arcade.color.BLACK)
+            arcade.draw_line(25, 415-i*32, 475, 415-i*32, arcade.color.BLACK)
 
     def on_hide_view(self):
         self.ui_manager.unregister_handlers()
@@ -50,6 +53,11 @@ class ResultView(arcade.View):
             center_y=y_slot * 1,
             width=200,
         )
+        button.set_style_attrs(         
+            bg_color=(173, 213, 79),
+            bg_color_hover=(186, 229, 85),
+            bg_color_press=(149, 182, 73),
+        )
         self.ui_manager.add_ui_element(button)
 
         button = buttons.Result2Button(
@@ -57,6 +65,11 @@ class ResultView(arcade.View):
             center_x=3*self.window.width // 4,
             center_y=y_slot * 1,
             width=200,
+        )
+        button.set_style_attrs(         
+            bg_color=(173, 213, 79),
+            bg_color_hover=(186, 229, 85),
+            bg_color_press=(149, 182, 73),
         )
         self.ui_manager.add_ui_element(button)
 
@@ -76,16 +89,20 @@ class ResultView2(arcade.View):
                                 SCREEN_WIDTH, SCREEN_HEIGHT)
         arcade.draw_rectangle_outline(SCREEN_WIDTH/2, SCREEN_HEIGHT/2-25, SCREEN_WIDTH-50, 3*SCREEN_HEIGHT/5, arcade.color.BLACK)
         arcade.draw_line(175, 95, 175, 455, arcade.color.BLACK)
-        for index, row in pd.read_csv(RESULTS["result2"]).iterrows():
-            arcade.draw_text(f"{index+1}.", 50, 437-index*36, arcade.color.BLACK, 18, anchor_x="center", anchor_y="center", align="center")
-            arcade.draw_text(str(row["points"]), 125, 437-index*36, arcade.color.BLACK, 18, anchor_x="center", anchor_y="center", align="center")
-            arcade.draw_text(str(row["user"]), 175, 437-index*36, arcade.color.BLACK, 18, width= 150, anchor_x="left", anchor_y="center", align="center")
-            arcade.draw_text(str(row["date"]), 325, 437-index*36, arcade.color.BLACK, 18, width= 150, anchor_x="left", anchor_y="center", align="center")
+        arcade.draw_text("Lp.", 50, 435, arcade.color.BLACK, 20, anchor_x="center", anchor_y="center", align="center")
+        arcade.draw_text("Points", 125, 435, arcade.color.BLACK, 20, anchor_x="center", anchor_y="center", align="center")
+        arcade.draw_text("Name", 250, 435, arcade.color.BLACK, 20, anchor_x="center", anchor_y="center", align="center")
+        arcade.draw_text("Date", 400, 435, arcade.color.BLACK, 20, anchor_x="center", anchor_y="center", align="center")
+        for index, row in pd.read_csv(RESULTS["level2"]).iterrows():
+            arcade.draw_text(f"{index+1}.", 50, 399-index*32, arcade.color.BLACK, 18, anchor_x="center", anchor_y="center", align="center")
+            arcade.draw_text(str(row["points"]), 125, 399-index*32, arcade.color.BLACK, 18, anchor_x="center", anchor_y="center", align="center")
+            arcade.draw_text(str(row["user"]), 250, 399-index*32, arcade.color.BLACK, 18, width= 145, anchor_x="center", anchor_y="center", align="center")
+            arcade.draw_text(str(row["date"]), 400, 399-index*32, arcade.color.BLACK, 18, width= 145, anchor_x="center", anchor_y="center", align="center")
         
         arcade.draw_line(75, 95, 75, 455, arcade.color.BLACK)
         arcade.draw_line(325, 95, 325, 455, arcade.color.BLACK)
         for i in range(10):
-            arcade.draw_line(25, 419-i*36, 475, 419-i*36, arcade.color.BLACK)
+            arcade.draw_line(25, 415-i*32, 475, 415-i*32, arcade.color.BLACK)
 
     def on_hide_view(self):
         self.ui_manager.unregister_handlers()
@@ -97,12 +114,17 @@ class ResultView2(arcade.View):
         """ Set up this view. """
         self.ui_manager.purge_ui_elements()
         y_slot = self.window.height // 12
-        results_read.exist_result(RESULTS["result2"])
+        results_read.exist_result(RESULTS["level2"])
         button = buttons.MenuButton(
             'Menu',
             center_x=self.window.width // 4,
             center_y=y_slot * 1,
             width=200,
+        )
+        button.set_style_attrs(         
+            bg_color=(173, 213, 79),
+            bg_color_hover=(186, 229, 85),
+            bg_color_press=(149, 182, 73),
         )
         self.ui_manager.add_ui_element(button)
 
@@ -111,5 +133,10 @@ class ResultView2(arcade.View):
             center_x=3*self.window.width // 4,
             center_y=y_slot * 1,
             width=200,
+        )
+        button.set_style_attrs(         
+            bg_color=(173, 213, 79),
+            bg_color_hover=(186, 229, 85),
+            bg_color_press=(149, 182, 73),
         )
         self.ui_manager.add_ui_element(button)
