@@ -21,7 +21,8 @@ SNAKEBODY = {
 
 APPLE = {
     "good_apple": "asserts/image/myapple.png",
-    "bad_apple": "asserts/image/black_apple.png"
+    "bad_apple": "asserts/image/black_apple.png",
+    "rotten_apple": "asserts/image/brown_apple.png"
 }
 
 BACKGROUNDS = {

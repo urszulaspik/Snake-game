@@ -24,7 +24,7 @@ class MyGame(arcade.View):
         """ Set up the game and initialize the variables. """
         self.snake = snake_class.Snake(GAME_WIDTH / 2, GAME_HEIGHT / 2)
         self.apple = apple.Apple(APPLE["good_apple"], 0.5)
-        self.apple.new_apple(GAME_WIDTH, GAME_HEIGHT, MOVEMENT_SPEED, self.snake.coord_list)
+        self.apple.new_apple(GAME_WIDTH, GAME_HEIGHT, MOVEMENT_SPEED, self.snake.snake_body())
         self.background = arcade.load_texture(BACKGROUNDS["game"])
 
     def on_draw(self):
@@ -47,7 +47,7 @@ class MyGame(arcade.View):
         """ Movement and game logic """
         self.snake.change_x = 0
         self.snake.change_y = 0
-        if self.apple.new_apple_ate(GAME_WIDTH, GAME_HEIGHT, MOVEMENT_SPEED, self.snake.center_x, self.snake.center_y, self.snake.coord_list):
+        if self.apple.new_apple_ate(GAME_WIDTH, GAME_HEIGHT, MOVEMENT_SPEED, self.snake.center_x, self.snake.center_y, self.snake.snake_body()):
             arcade.play_sound(SOUNDS["eat"])
             self.snake.next = True
         if self.direction_list[0]:
