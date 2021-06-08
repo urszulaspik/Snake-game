@@ -1,7 +1,9 @@
 import arcade
 from settings import *
 
+
 class SnakeHead(arcade.Sprite):
+    """Class with head of snake"""
 
     def __init__(self):
         super().__init__()
@@ -19,6 +21,7 @@ class SnakeHead(arcade.Sprite):
         self.texture = texture
 
     def update(self):
+        """Update the sprite."""
         if self.change_y > 0:
             self.texture = self.textures[0]
         elif self.change_y < 0:
@@ -28,8 +31,16 @@ class SnakeHead(arcade.Sprite):
         elif self.change_x <= 0:
             self.texture = self.textures[3]
 
+
 class Snake:
+    """Class with full snake with head and body"""
+
     def __init__(self, screen_width, screen_hight):
+        """
+        Create snake
+        :param screen_width: (float) width of screen with game
+        :param screen_hight:(float) hight of screen with game
+        """
         self.center_x = screen_width / 2
         self.center_y = screen_hight / 2
         self.change_x = 0
@@ -44,12 +55,14 @@ class Snake:
         self.bad_direction = False
 
     def dead_check(self):
+        '''Check if snake is dead'''
         if self.coord_list[-1] in self.coord_list[:-2]:
             self.dead = True
         if self.coord_list[-1][0] in (0, 500) or self.coord_list[-1][1] in (0, 500):
             self.dead = True
 
     def direction_check(self):
+        """Check if direction is correct"""
         if self.length_snake != 1 and self.coord_list[-1] == self.coord_list[-3]:
             self.bad_direction = True
             del self.coord_list[-1]
@@ -60,12 +73,13 @@ class Snake:
             self.head_posy = self.change_y
 
     def eat_check(self):
-        if self.next == True:
+        """Check if snake ate red apple"""
+        if self.next:
             self.length_snake += 1
-            self.score += 1        
+            self.score += 1
 
     def update(self):
-        """ Move the player """
+        """ Move the snake """
         self.center_x += self.change_x
         self.center_y += self.change_y
         self.coord_list.append((self.center_x, self.center_y))
@@ -76,6 +90,10 @@ class Snake:
         self.dead_check()
 
     def snake_body(self):
+        """
+        Create snake full body
+        :return: (arcade.SpriteList) list with body elements
+        """
         full_snake = arcade.SpriteList()
         head = SnakeHead()
         head.center_x = self.coord_list[-1][0]

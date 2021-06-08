@@ -5,14 +5,16 @@ from settings import *
 import game_over
 import menu
 
+
 class MyGame(arcade.View):
     """
-    Main application class.
+    Class with view with level 1 of the game
     """
 
     def __init__(self, user):
         """
-        Initializer
+        Create view
+        :param user: (arcade.gui.UIInputBox) input with user name
         """
         super().__init__()
         self.direction_list = [False, False, False, False]
@@ -33,12 +35,13 @@ class MyGame(arcade.View):
         """
         arcade.start_render()
         arcade.draw_lrwh_rectangle_textured(0, 0,
-                                           SCREEN_WIDTH, SCREEN_HEIGHT,
-                                           self.background)
+                                            SCREEN_WIDTH, SCREEN_HEIGHT,
+                                            self.background)
 
         self.apple.draw()
         self.snake.snake_body().draw()
-        arcade.draw_rectangle_outline(GAME_WIDTH/2, GAME_HEIGHT/2, GAME_WIDTH-25, GAME_HEIGHT-25, arcade.color.BLACK)
+        arcade.draw_rectangle_outline(GAME_WIDTH / 2, GAME_HEIGHT / 2, GAME_WIDTH - 25, GAME_HEIGHT - 25,
+                                      arcade.color.BLACK)
 
         output = f"Score: {self.snake.score}"
         arcade.draw_text(output, 16, 540, arcade.color.BLACK, 25)
@@ -47,7 +50,8 @@ class MyGame(arcade.View):
         """ Movement and game logic """
         self.snake.change_x = 0
         self.snake.change_y = 0
-        if self.apple.new_apple_ate(GAME_WIDTH, GAME_HEIGHT, MOVEMENT_SPEED, self.snake.center_x, self.snake.center_y, self.snake.snake_body()):
+        if self.apple.new_apple_ate(GAME_WIDTH, GAME_HEIGHT, MOVEMENT_SPEED, self.snake.center_x, self.snake.center_y,
+                                    self.snake.snake_body()):
             arcade.play_sound(SOUNDS["eat"])
             self.snake.next = True
         if self.direction_list[0]:
@@ -70,6 +74,9 @@ class MyGame(arcade.View):
             self.snake.bad_direction = False
 
     def before_direction(self):
+        '''
+        Change direction for opposite one
+        '''
         index = self.direction_list.index(True)
         self.direction_list[index] = False
         if index == 0:
@@ -77,11 +84,15 @@ class MyGame(arcade.View):
         elif index == 1:
             self.direction_list[0] = True
         elif index == 2:
-            self.direction_list[3] = True       
+            self.direction_list[3] = True
         elif index == 3:
-            self.direction_list[2] = True 
+            self.direction_list[2] = True
 
     def direction_changer(self, index):
+        """
+        Change direction for one with specified index
+        :param index: index of direction
+        """
         self.direction_list = list(map(lambda x: False, self.direction_list))
         self.direction_list[index] = True
 
@@ -97,13 +108,14 @@ class MyGame(arcade.View):
         elif key == arcade.key.RIGHT:
             self.direction_changer(3)
 
+
 def main():
     """ Main method """
     window = arcade.Window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
     start = menu.StartView()
     window.set_update_rate(1 / 10)
     window.show_view(start)
-    
+
     arcade.run()
 
 
