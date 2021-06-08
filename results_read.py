@@ -12,11 +12,11 @@ def writing(file, score, date, user, num):
     df = pd.read_csv(file)
     sorted = df.sort_values(["points"], ascending=False)
     if sorted.empty:
-        sorted.loc[0] = [score, user, date]
+        sorted.loc[0] = [score, date, user]
     elif sorted.index[-1] < num-1:
-        sorted.loc[sorted.index[-1]+1] = [score, user, date]
+        sorted.loc[sorted.index[-1]+1] = [score, date, user]
     elif sorted["points"].iloc[-1] < score:
-        sorted.loc[sorted.index[-1]] = [score, user, date]
+        sorted.loc[sorted.index[-1]] = [score, date, user]
     new_table = sorted.sort_values(["points"], ascending=False)
     new_table.to_csv(file, index=False)
 
