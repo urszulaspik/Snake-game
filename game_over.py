@@ -50,6 +50,7 @@ class GameOverView(arcade.View):
             center_x=self.window.width // 2,
             center_y=y_slot * 2,
             width=250,
+            user=self.user.text
         )
         button.set_style_attrs(         
             bg_color_hover=(226, 99, 1),
@@ -125,6 +126,7 @@ class GameOverView2(arcade.View):
             center_x=self.window.width // 2,
             center_y=y_slot * 2,
             width=250,
+            user=self.user.text
         )
         button.set_style_attrs(         
             bg_color_hover=(226, 99, 1),

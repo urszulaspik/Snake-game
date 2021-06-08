@@ -1,7 +1,7 @@
 import arcade
 import snake_class
 import apple
-import menu
+import game_over
 from settings import *
 
 class MyGame2(arcade.View):
@@ -18,6 +18,7 @@ class MyGame2(arcade.View):
         self.background = None
         self.live = 3
         self.user = user
+        self.num_apple = 1
 
     def setup(self):
         """ Set up the game and initialize the variables. """
@@ -26,6 +27,8 @@ class MyGame2(arcade.View):
         self.apple.new_apple(GAME_WIDTH, GAME_HEIGHT, MOVEMENT_SPEED, self.snake.coord_list)
         self.black_apple = apple.Apple(APPLE["bad_apple"], 0.5)
         self.black_apple.new_apple(GAME_WIDTH, GAME_HEIGHT, MOVEMENT_SPEED, self.snake.coord_list+[(self.apple.center_x, self.apple.center_y)])
+        #self.bad_apple_list = arcade.SpriteList()
+        #self.bad_apple_list.append(self.black_apple)
         self.background = arcade.load_texture(BACKGROUNDS["game"])
         self.heart_list = arcade.SpriteList()
         for i in range(self.live):
@@ -45,6 +48,7 @@ class MyGame2(arcade.View):
 
         self.apple.draw()
         self.black_apple.draw()
+        #self.bad_apple_list.draw()
         self.snake.snake_body().draw()
         arcade.draw_rectangle_outline(GAME_WIDTH/2, GAME_HEIGHT/2, GAME_WIDTH-25, GAME_HEIGHT-25, arcade.color.BLACK)
 
@@ -67,6 +71,10 @@ class MyGame2(arcade.View):
                 arcade.play_sound(SOUNDS["heart"])
             else: 
                 self.snake.dead = True
+        #if len(self.bad_apple_list) < self.snake.length_snake % 5:
+        #    black_apple = apple.Apple(APPLE["bad_apple"], 0.5)
+        #    black_apple.new_apple(GAME_WIDTH, GAME_HEIGHT, MOVEMENT_SPEED, self.snake.coord_list+[(self.apple.center_x, self.apple.center_y)])
+        #    self.bad_apple_list.append(black_apple)
         if self.direction_list[0]:
             self.snake.change_y = MOVEMENT_SPEED
         elif self.direction_list[1]:
@@ -80,7 +88,7 @@ class MyGame2(arcade.View):
         self.snake.next = False
         if self.snake.dead == True:
             arcade.play_sound(SOUNDS["dead"])
-            view = menu.GameOverView2(self.snake.score, self.user)
+            view = game_over.GameOverView2(self.snake.score, self.user)
             self.window.show_view(view)
 
     def on_key_press(self, key, modifiers):

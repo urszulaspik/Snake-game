@@ -35,9 +35,12 @@ class AuthorButton(arcade.gui.UIFlatButton):
     """
     To capture a button click, subclass the button and override on_click.
     """
+    def __init__(self, text, center_x, center_y, width, user="User Name"):
+        super().__init__(text=text, center_x=center_x, center_y=center_y, width=width)
+        self.user = user
     def on_click(self):
         """ Called when user lets off button """
-        view = menu.AuthorView()
+        view = menu.AuthorView(self.user)
         view.setup()
         view.window.show_view(view)
 
@@ -45,9 +48,12 @@ class RulesButton(arcade.gui.UIFlatButton):
     """
     To capture a button click, subclass the button and override on_click.
     """
+    def __init__(self, text, center_x, center_y, width, user="User Name"):
+        super().__init__(text=text, center_x=center_x, center_y=center_y, width=width)
+        self.user = user
     def on_click(self):
         """ Called when user lets off button """
-        view = menu.RulesView()
+        view = menu.RulesView(self.user)
         view.setup()
         view.window.show_view(view)
 
@@ -55,9 +61,12 @@ class ResultButton(arcade.gui.UIFlatButton):
     """
     To capture a button click, subclass the button and override on_click.
     """
+    def __init__(self, text, center_x, center_y, width, user="User Name"):
+        super().__init__(text=text, center_x=center_x, center_y=center_y, width=width)
+        self.user = user
     def on_click(self):
         """ Called when user lets off button """
-        view = result_view.ResultView()
+        view = result_view.ResultView(self.user)
         view.setup()
         view.window.show_view(view)
 
@@ -65,9 +74,12 @@ class MenuButton(arcade.gui.UIFlatButton):
     """
     To capture a button click, subclass the button and override on_click.
     """
+    def __init__(self, text, center_x, center_y, width, user="User Name"):
+        super().__init__(text=text, center_x=center_x, center_y=center_y, width=width)
+        self.user = user
     def on_click(self):
         """ Called when user lets off button """
-        view = menu.StartView()
+        view = menu.StartView(self.user)
         view.setup()
         view.window.show_view(view)
 
@@ -75,9 +87,12 @@ class Result2Button(arcade.gui.UIFlatButton):
     """
     To capture a button click, subclass the button and override on_click.
     """
+    def __init__(self, text, center_x, center_y, width, user="User Name"):
+        super().__init__(text=text, center_x=center_x, center_y=center_y, width=width)
+        self.user = user
     def on_click(self):
         """ Called when user lets off button """
-        view = result_view.ResultView2()
+        view = result_view.ResultView2(self.user)
         view.setup()
         view.window.show_view(view)
 

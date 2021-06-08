@@ -1,8 +1,9 @@
 import arcade
 import snake_class
 import apple
-import menu
 from settings import *
+import game_over
+import menu
 
 class MyGame(arcade.View):
     """
@@ -43,6 +44,7 @@ class MyGame(arcade.View):
 
     def on_update(self, delta_time):
         """ Movement and game logic """
+        #delta_time = delta_time*(10**100)
         self.snake.change_x = 0
         self.snake.change_y = 0
         if self.apple.new_apple_ate(GAME_WIDTH, GAME_HEIGHT, MOVEMENT_SPEED, self.snake.center_x, self.snake.center_y, self.snake.coord_list):
@@ -61,7 +63,7 @@ class MyGame(arcade.View):
         self.snake.next = False
         if self.snake.dead == True:
             arcade.play_sound(SOUNDS["dead"])
-            view = menu.GameOverView(self.snake.score, self.user)
+            view = game_over.GameOverView(self.snake.score, self.user)
             self.window.show_view(view)
 
     def on_key_press(self, key, modifiers):

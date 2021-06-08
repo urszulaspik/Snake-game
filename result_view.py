@@ -8,11 +8,12 @@ import pandas as pd
 class ResultView(arcade.View):
     """ View to show when game is over """
 
-    def __init__(self):
+    def __init__(self, user):
         """ This is run once when we switch to this view """
         super().__init__()
         self.texture = arcade.load_texture(BACKGROUNDS["result1"])
         self.ui_manager = UIManager()
+        self.user = user
 
     def on_draw(self):
         """ Draw this view """
@@ -52,6 +53,7 @@ class ResultView(arcade.View):
             center_x=self.window.width // 4,
             center_y=y_slot * 1,
             width=200,
+            user=self.user.text
         )
         button.set_style_attrs(         
             bg_color=(173, 213, 79),
@@ -65,6 +67,7 @@ class ResultView(arcade.View):
             center_x=3*self.window.width // 4,
             center_y=y_slot * 1,
             width=200,
+            user=self.user
         )
         button.set_style_attrs(         
             bg_color=(173, 213, 79),
@@ -76,11 +79,12 @@ class ResultView(arcade.View):
 class ResultView2(arcade.View):
     """ View to show when game is over """
 
-    def __init__(self):
+    def __init__(self, user):
         """ This is run once when we switch to this view """
         super().__init__()
         self.texture = arcade.load_texture(BACKGROUNDS["result2"])
         self.ui_manager = UIManager()
+        self.user = user
 
     def on_draw(self):
         """ Draw this view """
@@ -120,6 +124,7 @@ class ResultView2(arcade.View):
             center_x=self.window.width // 4,
             center_y=y_slot * 1,
             width=200,
+            user=self.user.text
         )
         button.set_style_attrs(         
             bg_color=(173, 213, 79),
@@ -133,6 +138,7 @@ class ResultView2(arcade.View):
             center_x=3*self.window.width // 4,
             center_y=y_slot * 1,
             width=200,
+            user=self.user
         )
         button.set_style_attrs(         
             bg_color=(173, 213, 79),
