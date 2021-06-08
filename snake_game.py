@@ -18,6 +18,7 @@ class MyGame(arcade.View):
         self.direction_list = [False, False, False, False]
         self.background = None
         self.user = user
+        self.before = None
 
     def setup(self):
         """ Set up the game and initialize the variables. """
@@ -44,7 +45,6 @@ class MyGame(arcade.View):
 
     def on_update(self, delta_time):
         """ Movement and game logic """
-        #delta_time = delta_time*(10**100)
         self.snake.change_x = 0
         self.snake.change_y = 0
         if self.apple.new_apple_ate(GAME_WIDTH, GAME_HEIGHT, MOVEMENT_SPEED, self.snake.center_x, self.snake.center_y, self.snake.coord_list):
@@ -65,28 +65,43 @@ class MyGame(arcade.View):
             arcade.play_sound(SOUNDS["dead"])
             view = game_over.GameOverView(self.snake.score, self.user)
             self.window.show_view(view)
+        if self.snake.bad_direction == True:
+            self.before_direction()
+            self.snake.bad_direction = False
+
+    def before_direction(self):
+        index = self.direction_list.index(True)
+        self.direction_list[index] = False
+        if index == 0:
+            self.direction_list[1] = True
+        elif index == 1:
+            self.direction_list[0] = True
+        elif index == 2:
+            self.direction_list[3] = True       
+        elif index == 3:
+            self.direction_list[2] = True 
+
+    def direction_changer(self, index):
+        self.direction_list = list(map(lambda x: False, self.direction_list))
+        self.direction_list[index] = True
 
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed. """
 
         if key == arcade.key.UP:
-            self.direction_list = list(map(lambda x: False, self.direction_list))
-            self.direction_list[0] = True
+            self.direction_changer(0)
         elif key == arcade.key.DOWN:
-            self.direction_list = list(map(lambda x: False, self.direction_list))
-            self.direction_list[1] = True
+            self.direction_changer(1)
         elif key == arcade.key.LEFT:
-            self.direction_list = list(map(lambda x: False, self.direction_list))
-            self.direction_list[2] = True
+            self.direction_changer(2)
         elif key == arcade.key.RIGHT:
-            self.direction_list = list(map(lambda x: False, self.direction_list))
-            self.direction_list[3] = True
+            self.direction_changer(3)
 
 def main():
     """ Main method """
     window = arcade.Window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
     start = menu.StartView()
-    window.set_update_rate(1 / 7)
+    window.set_update_rate(1 / 10)
     window.show_view(start)
     
     arcade.run()

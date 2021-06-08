@@ -34,31 +34,47 @@ class Snake:
         self.center_y = screen_hight / 2
         self.change_x = 0
         self.change_y = 0
-        self.next = False
         self.length_snake = 1
         self.coord_list = [(screen_width / 2, screen_hight / 2)]
         self.head_posx = 0
         self.head_posy = 0
         self.score = 0
         self.dead = False
+        self.next = False
+        self.bad_direction = False
+
+    def dead_check(self):
+        if self.coord_list[-1] in self.coord_list[:-2]:
+            self.dead = True
+        if self.coord_list[-1][0] in (0, 500) or self.coord_list[-1][1] in (0, 500):
+            self.dead = True
+
+    def direction_check(self):
+        if self.length_snake != 1 and self.coord_list[-1] == self.coord_list[-3]:
+            self.bad_direction = True
+            del self.coord_list[-1]
+            self.center_x -= self.change_x
+            self.center_y -= self.change_y
+        else:
+            self.head_posx = self.change_x
+            self.head_posy = self.change_y
+
+    def eat_check(self):
+        if self.next == True:
+            self.length_snake += 1
+            self.score += 1        
 
     def update(self):
         """ Move the player """
         self.center_x += self.change_x
         self.center_y += self.change_y
-        self.head_posx = self.change_x
-        self.head_posy = self.change_y
         self.coord_list.append((self.center_x, self.center_y))
+        self.direction_check()
+        self.eat_check()
         if len(self.coord_list) > self.length_snake:
             del self.coord_list[0]
-        if self.next == True:
-            self.length_snake += 1
-            self.score += 1
-        if self.coord_list[-1] in self.coord_list[:-1]:
-            self.dead = True
-        if self.coord_list[-1][0] in (0, 500) or self.coord_list[-1][1] in (0, 500):
-            self.dead = True
-    
+        self.dead_check()
+
     def snake_body(self):
         full_snake = arcade.SpriteList()
         head = SnakeHead()
@@ -68,7 +84,7 @@ class Snake:
         head.change_y = self.head_posy
         head.update()
         full_snake.append(head)
-        for i in self.coord_list[0:-1]:
+        for i in self.coord_list[:-1]:
             body = arcade.Sprite(SNAKEBODY["body"], head.scale)
             body.center_x = i[0]
             body.center_y = i[1]
