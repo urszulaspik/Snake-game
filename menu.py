@@ -209,8 +209,12 @@ class RulesView(arcade.View):
         button = buttons.MenuButton(
             'Menu',
             center_x=self.window.width // 2,
-            center_y=self.window.height // 6,
+            center_y=self.window.height // 9,
             width=200,
             user=self.user.text
+        )
+        button.set_style_attrs(
+            bg_color_hover=(159, 255, 233),
+            bg_color_press=(51, 201, 166),
         )
         self.ui_manager.add_ui_element(button)
