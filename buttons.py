@@ -14,14 +14,20 @@ class ExitButton(arcade.gui.UIFlatButton):
         arcade.close_window()
 
 class Level1Button(arcade.gui.UIFlatButton):
+    def __init__(self, text, center_x, center_y, width, user):
+        super().__init__(text=text, center_x=center_x, center_y=center_y, width=width)
+        self.user = user
     def on_click(self):
-        view = snake_game.MyGame()
+        view = snake_game.MyGame(self.user)
         view.setup()
         view.window.show_view(view)
 
 class Level2Button(arcade.gui.UIFlatButton):
+    def __init__(self, text, center_x, center_y, width, user):
+        super().__init__(text=text, center_x=center_x, center_y=center_y, width=width)
+        self.user = user
     def on_click(self):
-        view = level2.MyGame2()
+        view = level2.MyGame2(self.user)
         view.setup()
         view.window.show_view(view)
 

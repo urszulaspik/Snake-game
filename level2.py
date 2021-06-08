@@ -9,7 +9,7 @@ class MyGame2(arcade.View):
     Main application class.
     """
 
-    def __init__(self):
+    def __init__(self, user):
         """
         Initializer
         """
@@ -17,6 +17,7 @@ class MyGame2(arcade.View):
         self.direction_list = [False, False, False, False]
         self.background = None
         self.live = 3
+        self.user = user
 
     def setup(self):
         """ Set up the game and initialize the variables. """
@@ -79,7 +80,7 @@ class MyGame2(arcade.View):
         self.snake.next = False
         if self.snake.dead == True:
             arcade.play_sound(SOUNDS["dead"])
-            view = menu.GameOverView2(self.snake.score)
+            view = menu.GameOverView2(self.snake.score, self.user)
             self.window.show_view(view)
 
     def on_key_press(self, key, modifiers):

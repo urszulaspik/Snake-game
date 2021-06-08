@@ -60,30 +60,45 @@ class StartView(arcade.View):
         )
         self.ui_manager.add_ui_element(button)
 
-        button = buttons.Level2Button( "Play level 2",
-            center_x=self.window.width // 2,
-            center_y=y_slot * 5,
-            width=250
+        ui_input_box = arcade.gui.UIInputBox(
+            center_x = self.window.width // 2,
+            center_y = y_slot*7,
+            width = 250,
+            id = "username"
         )
-        self.ui_manager.add_ui_element(button)
+        ui_input_box.text = "User Name"
+        ui_input_box.cursor_index = len(ui_input_box.text) #?
+        self.ui_manager.add_ui_element(ui_input_box)
+        self.user = self.ui_manager.find_by_id("username").text
 
         button = buttons.Level1Button( "Play level 1",
             center_x=self.window.width // 2,
             center_y=y_slot * 6,
-            width=250
+            width=250,
+            user=ui_input_box
         )
         self.ui_manager.add_ui_element(button)
+
+        button = buttons.Level2Button( "Play level 2",
+            center_x=self.window.width // 2,
+            center_y=y_slot * 5,
+            width=250,
+            user=ui_input_box
+        )
+        self.ui_manager.add_ui_element(button)
+
 
 
 class GameOverView(arcade.View):
     """ View to show when game is over """
 
-    def __init__(self, score):
+    def __init__(self, score, user):
         """ This is run once when we switch to this view """
         super().__init__()
         self.texture = arcade.load_texture("asserts/image/game_over.png")
         self.ui_manager = UIManager()
         self.score = score
+        self.user = user
 
     def on_draw(self):
         """ Draw this view """
@@ -101,8 +116,8 @@ class GameOverView(arcade.View):
     def setup(self):
         """ Set up this view. """
         self.ui_manager.purge_ui_elements()
-        results_read.today_points_write("result_level1.csv", self.score)
-        y_slot = self.window.height // 8
+        results_read.today_points_write("result_level1.csv", self.score, self.user.text)
+        y_slot = self.window.height // 6
 
         button = buttons.ExitButton(
             'Exit',
@@ -123,19 +138,20 @@ class GameOverView(arcade.View):
         button = buttons.Level1Button( "Play again",
             center_x=self.window.width // 2,
             center_y=y_slot * 3,
-            width=250
+            width=250,
+            user=self.user
         )
         self.ui_manager.add_ui_element(button)
 
-        ui_input_box = arcade.gui.UIInputBox(
-            center_x = self.window.width // 2,
-            center_y = y_slot*4,
-            width = 250,
-            id = "username"
-        )
-        ui_input_box.text = "User Name"
-        ui_input_box.cursor_index = len(ui_input_box.text) #?
-        self.ui_manager.add_ui_element(ui_input_box)
+        #ui_input_box = arcade.gui.UIInputBox(
+        #    center_x = self.window.width // 2,
+        #    center_y = y_slot*4,
+        #    width = 250,
+        #    id = "username"
+        #)
+        #ui_input_box.text = "User Name"
+        #ui_input_box.cursor_index = len(ui_input_box.text) #?
+        #self.ui_manager.add_ui_element(ui_input_box)
 
         self.ui_manager.add_ui_element(arcade.gui.UILabel(
             f'Your score: {self.score}',
@@ -215,12 +231,13 @@ class RulesView(arcade.View):
 class GameOverView2(arcade.View):
     """ View to show when game is over """
 
-    def __init__(self, score):
+    def __init__(self, score, user):
         """ This is run once when we switch to this view """
         super().__init__()
         self.texture = arcade.load_texture("asserts/image/game_over.png")
         self.ui_manager = UIManager()
         self.score = score
+        self.user = user
 
     def on_draw(self):
         """ Draw this view """
@@ -230,7 +247,6 @@ class GameOverView2(arcade.View):
 
     def on_hide_view(self):
         self.ui_manager.unregister_handlers()
-        results_read.today_points_write("result_level2.csv", self.score)
     
     def on_show_view(self):
         self.setup()
@@ -238,7 +254,7 @@ class GameOverView2(arcade.View):
     def setup(self):
         """ Set up this view. """
         self.ui_manager.purge_ui_elements()
-        results_read.today_points_write("result_level2.csv", self.score)
+        results_read.today_points_write("result_level2.csv", self.score, self.user.text)
         y_slot = self.window.height // 6
         button = buttons.ExitButton(
             'Exit',
@@ -259,7 +275,8 @@ class GameOverView2(arcade.View):
         button = buttons.Level2Button( "Play again",
             center_x=self.window.width // 2,
             center_y=y_slot * 3,
-            width=250
+            width=250,
+            user=self.user
         )
         self.ui_manager.add_ui_element(button)
 
