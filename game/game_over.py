@@ -36,8 +36,7 @@ class GameOverView(arcade.View):
     def on_hide_view(self):
         """ Call when view is not shown anymore"""
         self.ui_manager.unregister_handlers()
-        #self.sound_stop()
-        arcade.stop_sound(self.sound)
+        self.sound_stop()
 
     def on_show_view(self):
         ''' Call when this view is shown '''
@@ -130,8 +129,7 @@ class GameOverView2(arcade.View):
     def on_hide_view(self):
         """Call when this view is not shown anymore"""
         self.ui_manager.unregister_handlers()
-        #self.sound_stop()
-        arcade.stop_sound(self.sound)
+        self.sound_stop()
         
 
     def on_show_view(self):
