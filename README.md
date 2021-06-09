@@ -12,6 +12,8 @@ After the game is over, the player is redirected to the end screen.
 
 
 ### Technologies
+**Python** - Python language, version 3.8.5
+
 **arcade** - Python library to make arcade games.
 
 **pandas** - Python library to work with data files.
@@ -29,5 +31,7 @@ After the game is over, the player is redirected to the end screen.
 ### Example image
 
 ![menu](example/menu.png)
-![menu](example/level2.png)
-![menu](example/result.png)
+
+![level2](example/level2.png)
+
+![result](example/result.png)
