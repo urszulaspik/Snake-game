@@ -9,7 +9,7 @@ import pandas as pd
 class ResultView(arcade.View):
     """ Class with result level 1 view """
 
-    def __init__(self, user):
+    def __init__(self, user: arcade.gui.UIInputBox):
         """
         Create view
         :param user: (arcade.gui.UIInputBox) input with user name
@@ -92,7 +92,7 @@ class ResultView(arcade.View):
 class ResultView2(arcade.View):
     """ Class with result level 2 view """
 
-    def __init__(self, user):
+    def __init__(self, user: arcade.gui.UIInputBox):
         """
         Create view
         :param user: (arcade.gui.UIInputBox) input with user name

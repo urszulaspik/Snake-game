@@ -8,10 +8,10 @@ import results_read
 class GameOverView(arcade.View):
     """ Class with view to show when game is over """
 
-    def __init__(self, score: float, user: arcade.gui.UIInputBox):
+    def __init__(self, score: int, user: arcade.gui.UIInputBox):
         """
         Create view
-        :param score: (float) points earned by the user in the game
+        :param score: (int) points earned by the user in the game
         :param user: (arcade.gui.UIInputBox) input with user name
         """
         super().__init__()
@@ -35,7 +35,7 @@ class GameOverView(arcade.View):
         self.setup()
 
     def setup(self):
-        """ Set up this view. """
+        """ Set up this view, creat buttons. """
         self.ui_manager.purge_ui_elements()
         results_read.today_points_write(RESULTS["level1"], self.score, self.user.text)
         y_slot = self.window.height // 6
@@ -92,7 +92,7 @@ class GameOverView(arcade.View):
 class GameOverView2(arcade.View):
     """ View to show when game is over """
 
-    def __init__(self, score, user):
+    def __init__(self, score: int, user: arcade.gui.UIInputBox):
         """
         Create view
         :param score: (float) points earned by the user in the game
@@ -119,7 +119,7 @@ class GameOverView2(arcade.View):
         self.setup()
 
     def setup(self):
-        """ Set up this view. """
+        """ Set up this view, create buttons """
         self.ui_manager.purge_ui_elements()
         results_read.today_points_write(RESULTS["level2"], self.score, self.user.text)
         y_slot = self.window.height // 6

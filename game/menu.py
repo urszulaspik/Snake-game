@@ -32,7 +32,7 @@ class StartView(arcade.View):
         self.setup()
 
     def setup(self):
-        """ Set up this view. """
+        """ Set up this view, create buttons """
         self.ui_manager.purge_ui_elements()
         y_slot = self.window.height // 12
 
@@ -157,7 +157,7 @@ class AuthorView(arcade.View):
         self.setup()
 
     def setup(self):
-        """ Set up this view. """
+        """ Set up this view, create buttons"""
         self.ui_manager.purge_ui_elements()
 
         button = buttons.MenuButton(
@@ -203,7 +203,7 @@ class RulesView(arcade.View):
         self.setup()
 
     def setup(self):
-        """ Set up this view. """
+        """ Set up this view, create buttons """
         self.ui_manager.purge_ui_elements()
 
         button = buttons.MenuButton(

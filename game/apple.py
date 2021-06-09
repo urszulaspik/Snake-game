@@ -5,12 +5,12 @@ import random
 class Apple(arcade.Sprite):
     """Class with apple"""
 
-    def new_apple(self, screen_width: float, screen_hight: float, snake_thick: int, coord: arcade.SpriteList,
+    def new_apple(self, screen_width: int, screen_hight: int, snake_thick: int, coord: arcade.SpriteList,
                   coord2: arcade.SpriteList = arcade.SpriteList()):
         '''
         Find new coordinates for apple
-        :param screen_width: (float) width of screen with game
-        :param screen_hight:(float) hight of screen with game
+        :param screen_width: (int) width of screen with game
+        :param screen_hight: (int) hight of screen with game
         :param snake_thick: (int) size of the snake's break
         :param coord: (arcade.SpriteList) list of opposits spirits
         :param coord2: (arcade.SpriteList) second list of opposits spirits 

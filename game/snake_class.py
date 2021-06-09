@@ -6,6 +6,9 @@ class SnakeHead(arcade.Sprite):
     """Class with head of snake"""
 
     def __init__(self):
+        """
+        Create head of snake
+        """
         super().__init__()
 
         self.scale = 0.5
@@ -38,8 +41,8 @@ class Snake:
     def __init__(self, screen_width, screen_hight):
         """
         Create snake
-        :param screen_width: (float) width of screen with game
-        :param screen_hight:(float) hight of screen with game
+        :param screen_width: (int) width of screen with game
+        :param screen_hight:(int) hight of screen with game
         """
         self.center_x = screen_width / 2
         self.center_y = screen_hight / 2

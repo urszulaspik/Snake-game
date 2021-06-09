@@ -11,7 +11,7 @@ class MyGame(arcade.View):
     Class with view with level 1 of the game
     """
 
-    def __init__(self, user):
+    def __init__(self, user: arcade.gui.UIInputBox):
         """
         Create view
         :param user: (arcade.gui.UIInputBox) input with user name
@@ -21,6 +21,8 @@ class MyGame(arcade.View):
         self.background = None
         self.user = user
         self.before = None
+        self.snake = None
+        self.apple = None
 
     def setup(self):
         """ Set up the game and initialize the variables. """
@@ -88,10 +90,10 @@ class MyGame(arcade.View):
         elif index == 3:
             self.direction_list[2] = True
 
-    def direction_changer(self, index):
+    def direction_changer(self, index: int):
         """
         Change direction for one with specified index
-        :param index: index of direction
+        :param index: (int) index of direction
         """
         self.direction_list = list(map(lambda x: False, self.direction_list))
         self.direction_list[index] = True

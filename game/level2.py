@@ -21,6 +21,11 @@ class MyGame2(arcade.View):
         self.live = 3
         self.user = user
         self.all = arcade.SpriteList()
+        self.snake = None
+        self.apple = None
+        self.black_apple = None
+        self.heart_list = None
+        self.rotten_list = None
 
     def setup(self):
         """ Set up the game and initialize the variables. """
@@ -137,10 +142,10 @@ class MyGame2(arcade.View):
         elif index == 3:
             self.direction_list[2] = True
 
-    def direction_changer(self, index):
+    def direction_changer(self, index: int):
         """
         Change direction for one with specified index
-        :param index: index of direction
+        :param index: (int) index of direction
         """
         self.direction_list = list(map(lambda x: False, self.direction_list))
         self.direction_list[index] = True
