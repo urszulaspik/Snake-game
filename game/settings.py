@@ -37,8 +37,8 @@ BACKGROUNDS = {
 }
 
 RESULTS = {
-    "level1": "result_level1.csv",
-    "level2": "result_level2.csv"
+    "level1": "asserts/results/result_level1.csv",
+    "level2": "asserts/results/result_level2.csv"
 }
 
 HEART = {

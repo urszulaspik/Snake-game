@@ -22,3 +22,5 @@ After the game is over, the player is redirected to the end screen
 `cd snake-game `
 2. Install the project's development and runtime requirements:
 `pip install -r requirements.txt`
+3. Go to folder with game  `cd game`
+4. Type in cmd `python snake_game.py`
