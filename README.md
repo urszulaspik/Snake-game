@@ -20,7 +20,14 @@ After the game is over, the player is redirected to the end screen.
 1. Clone the template project
 `git clone  https://github.com/urszulaspik/Gra-arkadowa.git snake-game`
 `cd snake-game `
-2. Install the project's development and runtime requirements:
+2. Create virtual enviroment
+3. Install the project's development and runtime requirements:
 `pip install -r requirements.txt`
-3. Go to folder with game  `cd game`
-4. Type in cmd `python snake_game.py`
+4. Go to folder with game  `cd game`
+5. Type in cmd `python snake_game.py`
+
+### Example image
+
+![menu](example/menu.png)
+![menu](example/level2.png)
+![menu](example/result.png)
