@@ -1,7 +1,7 @@
 import arcade
 from arcade.gui import UIManager
 import buttons
-from settings import *
+from settings import BACKGROUNDS, SCREEN_WIDTH, SCREEN_HEIGHT, RESULTS
 import results_read
 import pandas as pd
 

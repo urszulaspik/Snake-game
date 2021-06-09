@@ -2,7 +2,7 @@ import arcade
 import snake_class
 import apple
 import game_over
-from settings import *
+from settings import GAME_WIDTH, GAME_HEIGHT, APPLE, MOVEMENT_SPEED, BACKGROUNDS, HEART, SCREEN_HEIGHT, SCREEN_WIDTH, SOUNDS
 
 
 class MyGame2(arcade.View):
@@ -120,7 +120,6 @@ class MyGame2(arcade.View):
         self.all.update()
         self.snake.next = False
         if self.snake.dead:
-            arcade.play_sound(SOUNDS["dead"])
             view = game_over.GameOverView2(self.snake.score, self.user)
             self.window.show_view(view)
         if self.snake.bad_direction:

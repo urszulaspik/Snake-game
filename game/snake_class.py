@@ -1,5 +1,5 @@
 import arcade
-from settings import *
+from settings import SNAKEBODY
 
 
 class SnakeHead(arcade.Sprite):

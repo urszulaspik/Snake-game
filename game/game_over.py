@@ -1,7 +1,7 @@
 import arcade
 from arcade.gui import UIManager
 import buttons
-from settings import *
+from settings import BACKGROUNDS, SCREEN_HEIGHT, SCREEN_WIDTH, SOUNDS, RESULTS
 import results_read
 
 
@@ -19,6 +19,7 @@ class GameOverView(arcade.View):
         self.ui_manager = UIManager()
         self.score = score
         self.user = user
+        self.sound = None
 
     def on_draw(self):
         """ Draw this view """
@@ -26,12 +27,21 @@ class GameOverView(arcade.View):
         self.texture.draw_sized(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2,
                                 SCREEN_WIDTH, SCREEN_HEIGHT)
 
+    def sound_stop(self):
+        try:
+            arcade.stop_sound(self.sound)
+        except:
+            pass
+
     def on_hide_view(self):
         """ Call when view is not shown anymore"""
         self.ui_manager.unregister_handlers()
+        #self.sound_stop()
+        arcade.stop_sound(self.sound)
 
     def on_show_view(self):
         ''' Call when this view is shown '''
+        self.sound = arcade.play_sound(SOUNDS["dead"])
         self.setup()
 
     def setup(self):
@@ -103,19 +113,30 @@ class GameOverView2(arcade.View):
         self.ui_manager = UIManager()
         self.score = score
         self.user = user
+        self.sound = None
 
     def on_draw(self):
         """ Draw this view """
         arcade.start_render()
         self.texture.draw_sized(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2,
                                 SCREEN_WIDTH, SCREEN_HEIGHT)
+    
+    def sound_stop(self):
+        try:
+            arcade.stop_sound(self.sound)
+        except:
+            pass
 
     def on_hide_view(self):
         """Call when this view is not shown anymore"""
         self.ui_manager.unregister_handlers()
+        #self.sound_stop()
+        arcade.stop_sound(self.sound)
+        
 
     def on_show_view(self):
         """Call when this view is shown"""
+        self.sound = arcade.play_sound(SOUNDS["dead"])
         self.setup()
 
     def setup(self):

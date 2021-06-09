@@ -1,7 +1,7 @@
 import arcade
 from arcade.gui import UIManager
 import buttons
-from settings import *
+from settings import SCREEN_HEIGHT, SCREEN_WIDTH, BACKGROUNDS
 
 
 class StartView(arcade.View):
