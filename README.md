@@ -32,6 +32,8 @@ After the game is over, the player is redirected to the end screen.
 
 ![menu](example/menu.png)
 
+![level1](example/level1.png)
+
 ![level2](example/level2.png)
 
 ![result](example/result.png)
