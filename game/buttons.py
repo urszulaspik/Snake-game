@@ -18,7 +18,7 @@ class ExitButton(arcade.gui.UIFlatButton):
 
 class LevelButton(arcade.gui.UIFlatButton):
     '''
-    Class with button for level 1
+    Class with button for level 1 and level 2
     '''
 
     def __init__(self, text: str, center_x: int, center_y: int, width: int, user: arcade.gui.UIInputBox, level: str):
@@ -29,6 +29,7 @@ class LevelButton(arcade.gui.UIFlatButton):
         :param center_y: (int) middle position of y
         :param width: (int) width of button
         :param user: (arcade.gui.UIInputBox) input with user name
+        :param level: (str) level of game, can be "level1" or "level2"
         '''
         super().__init__(text=text, center_x=center_x, center_y=center_y, width=width)
         self.user = user
