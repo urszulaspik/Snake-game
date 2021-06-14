@@ -16,12 +16,12 @@ class ExitButton(arcade.gui.UIFlatButton):
         arcade.close_window()
 
 
-class Level1Button(arcade.gui.UIFlatButton):
+class LevelButton(arcade.gui.UIFlatButton):
     '''
     Class with button for level 1
     '''
 
-    def __init__(self, text: str, center_x: int, center_y: int, width: int, user: arcade.gui.UIInputBox):
+    def __init__(self, text: str, center_x: int, center_y: int, width: int, user: arcade.gui.UIInputBox, level: str):
         '''
         Create button
         :param text: (str) text on button
@@ -32,34 +32,14 @@ class Level1Button(arcade.gui.UIFlatButton):
         '''
         super().__init__(text=text, center_x=center_x, center_y=center_y, width=width)
         self.user = user
+        self.level = level
 
     def on_click(self):
         '''Called when user lets off button, change view for level 1'''
-        view = snake_game.MyGame(self.user)
-        view.setup()
-        view.window.show_view(view)
-
-
-class Level2Button(arcade.gui.UIFlatButton):
-    '''
-    Class with button for level 2
-    '''
-
-    def __init__(self, text: str, center_x: int, center_y: int, width: int, user: arcade.gui.UIInputBox = "User Name"):
-        '''
-        Create button
-        :param text: (str) text on button
-        :param center_x: (int) middle position of x
-        :param center_y: (int) middle position of y
-        :param width: (int) width of button
-        :param user: (arcade.gui.UIInputBox) input with user name
-        '''
-        super().__init__(text=text, center_x=center_x, center_y=center_y, width=width)
-        self.user = user
-
-    def on_click(self):
-        '''Called when user lets off button, change view for level 2'''
-        view = level2.MyGame2(self.user)
+        if self.level == "level1":
+            view = snake_game.MyGame(self.user)
+        else:
+            view = level2.MyGame2(self.user)
         view.setup()
         view.window.show_view(view)
 

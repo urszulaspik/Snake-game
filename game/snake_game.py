@@ -23,6 +23,7 @@ class MyGame(arcade.View):
         self.before = None
         self.snake = None
         self.apple = None
+        self.level = "level1"
 
     def setup(self):
         """ Set up the game and initialize the variables. """
@@ -68,7 +69,7 @@ class MyGame(arcade.View):
         self.snake.update()
         self.snake.next = False
         if self.snake.dead == True:
-            view = game_over.GameOverView(self.snake.score, self.user)
+            view = game_over.GameOverView(self.snake.score, self.user, self.level)
             self.window.show_view(view)
         if self.snake.bad_direction == True:
             self.before_direction()

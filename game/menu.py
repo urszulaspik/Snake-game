@@ -102,11 +102,12 @@ class StartView(arcade.View):
         )
         self.ui_manager.add_ui_element(button)
 
-        button = buttons.Level1Button("Play level 1",
+        button = buttons.LevelButton("Play level 1",
                                       center_x=self.window.width // 2,
                                       center_y=y_slot * 6,
                                       width=250,
-                                      user=ui_input_box
+                                      user=ui_input_box,
+                                      level="level1"
                                       )
         button.set_style_attrs(
             bg_color=(51, 139, 57),
@@ -115,11 +116,12 @@ class StartView(arcade.View):
         )
         self.ui_manager.add_ui_element(button)
 
-        button = buttons.Level2Button("Play level 2",
+        button = buttons.LevelButton("Play level 2",
                                       center_x=self.window.width // 2,
                                       center_y=y_slot * 5,
                                       width=250,
-                                      user=ui_input_box
+                                      user=ui_input_box,
+                                      level = "level2"
                                       )
         button.set_style_attrs(
             bg_color=(51, 139, 57),
