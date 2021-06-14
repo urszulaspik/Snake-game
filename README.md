@@ -25,8 +25,7 @@ After the game is over, the player is redirected to the end screen.
 2. Create virtual enviroment
 3. Install the project's development and runtime requirements:
 `pip install -r requirements.txt`
-4. Go to folder with game  `cd game`
-5. Type in cmd `python snake_game.py`
+4. Type in cmd `python mysnake.py`
 
 ### Example image
 
