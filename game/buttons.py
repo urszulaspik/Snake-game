@@ -1,9 +1,9 @@
 import arcade
 import arcade.gui
-import level1
-import menu
-import level2
-import result_view
+from game import level1
+from game import menu
+from game import level2
+from game import result_view
 
 
 class ExitButton(arcade.gui.UIFlatButton):

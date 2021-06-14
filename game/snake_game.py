@@ -1,5 +1,5 @@
-from settings import SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_TITLE
-import menu
+from game.settings import SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_TITLE
+from game import menu
 import arcade
 
 

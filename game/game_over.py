@@ -1,8 +1,8 @@
 import arcade
 from arcade.gui import UIManager
-import buttons
-from settings import BACKGROUNDS, SCREEN_HEIGHT, SCREEN_WIDTH, SOUNDS, RESULTS
-import results_read
+from game import buttons
+from game.settings import BACKGROUNDS, SCREEN_HEIGHT, SCREEN_WIDTH, SOUNDS, RESULTS
+from game import results_read
 
 
 class GameOverView(arcade.View):

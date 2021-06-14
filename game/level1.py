@@ -1,8 +1,8 @@
 import arcade
-import snake_class
-import apple
-from settings import GAME_HEIGHT, GAME_WIDTH, APPLE, MOVEMENT_SPEED, BACKGROUNDS, SCREEN_HEIGHT, SCREEN_WIDTH, SOUNDS
-import game_over
+from game import snake_class
+from game import apple
+from game.settings import GAME_HEIGHT, GAME_WIDTH, APPLE, MOVEMENT_SPEED, BACKGROUNDS, SCREEN_HEIGHT, SCREEN_WIDTH, SOUNDS
+from game import game_over
 
 
 class MyGame(arcade.View):
