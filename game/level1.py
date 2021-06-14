@@ -1,7 +1,7 @@
 import arcade
 import snake_class
 import apple
-from settings import GAME_HEIGHT, GAME_WIDTH, APPLE, MOVEMENT_SPEED, BACKGROUNDS, SCREEN_HEIGHT, SCREEN_WIDTH, SOUNDS, SCREEN_TITLE
+from settings import GAME_HEIGHT, GAME_WIDTH, APPLE, MOVEMENT_SPEED, BACKGROUNDS, SCREEN_HEIGHT, SCREEN_WIDTH, SOUNDS
 import game_over
 
 
