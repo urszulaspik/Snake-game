@@ -1,6 +1,6 @@
 import arcade
 import arcade.gui
-import snake_game
+import level1
 import menu
 import level2
 import result_view
@@ -37,7 +37,7 @@ class LevelButton(arcade.gui.UIFlatButton):
     def on_click(self):
         '''Called when user lets off button, change view for level 1'''
         if self.level == "level1":
-            view = snake_game.MyGame(self.user)
+            view = level1.MyGame(self.user)
         else:
             view = level2.MyGame2(self.user)
         view.setup()
