@@ -10,6 +10,8 @@ def exist_result(file: str):
     :param file: (str) path of file to check
     '''
     if not os.path.exists(file):
+        folders = os.path.split(file)[0]
+        os.makedirs(folders, exist_ok=True)
         with open(file, "w") as result:
             result.write("points,date,user")
 
