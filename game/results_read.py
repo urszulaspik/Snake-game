@@ -26,6 +26,8 @@ def writing(file: str, score: str, date: str, user: str, num: int):
     :param num: (int) number of maximum amount of statistics
     """
     exist_result(file)
+    if user == "":
+        user = "Nobody"
     df = pd.read_csv(file)
     sorted = df.sort_values(["points"], ascending=False)
     if sorted.empty:
