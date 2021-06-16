@@ -98,7 +98,7 @@ class ResultButton(arcade.gui.UIFlatButton):
     Class with button for view with section with result in level 1
     '''
 
-    def __init__(self, text: str, center_x: int, center_y: int, width: int, user: arcade.gui.UIInputBox = "User Name"):
+    def __init__(self, text: str, center_x: int, center_y: int, width: int, user: arcade.gui.UIInputBox, level: str):
         '''
         Create button
         :param text: (str) text on button
@@ -106,13 +106,15 @@ class ResultButton(arcade.gui.UIFlatButton):
         :param center_y: (int) middle position of y
         :param width: (int) width of button
         :param user: (arcade.gui.UIInputBox) input with user name
+        :param level: (str) level of game, can be "level1" or "level2"
         '''
         super().__init__(text=text, center_x=center_x, center_y=center_y, width=width)
         self.user = user
+        self.level = level
 
     def on_click(self):
         """ Called when user lets off button, change view for result level 1 view """
-        view = result_view.ResultView(self.user)
+        view = result_view.ResultView(self.user, self.level)
         view.setup()
         view.window.show_view(view)
 

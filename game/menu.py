@@ -80,7 +80,8 @@ class StartView(arcade.View):
                                       center_x=self.window.width // 2,
                                       center_y=y_slot * 3,
                                       width=250,
-                                      user=ui_input_box
+                                      user=ui_input_box,
+                                      level = "level1"
                                       )
         button.set_style_attrs(
             bg_color=(51, 139, 57),
