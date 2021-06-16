@@ -58,7 +58,7 @@ class Snake:
         self.bad_direction = False
 
     def dead_check(self):
-        '''Check if snake is dead'''
+        """Check if snake is dead"""
         if self.coord_list[-1] in self.coord_list[:-2]:
             self.dead = True
         if self.coord_list[-1][0] in (0, 500) or self.coord_list[-1][1] in (0, 500):

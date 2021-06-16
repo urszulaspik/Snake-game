@@ -7,7 +7,7 @@ import pandas as pd
 
 
 class ResultView(arcade.View):
-    """ Class with result level 1 view """
+    """ Class with result view for indicated level"""
 
     def __init__(self, user: arcade.gui.UIInputBox, level: str):
         """

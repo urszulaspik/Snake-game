@@ -29,7 +29,9 @@ class MyGame2(arcade.View):
         self.level = "level2"
 
     def setup(self):
-        """ Set up the game and initialize the variables. """
+        """
+        Set up the game and initialize the variables.
+        """
         self.snake = snake_class.Snake(GAME_WIDTH / 2, GAME_HEIGHT / 2)
         self.apple = apple.Apple(APPLE["good_apple"], 0.5)
         self.apple.new_apple(GAME_WIDTH, GAME_HEIGHT, MOVEMENT_SPEED, self.snake.snake_body())
@@ -72,11 +74,11 @@ class MyGame2(arcade.View):
         self.heart_list.draw()
 
     def rotten_check(self):
-        '''
+        """
         Check if was collision with rotten apple,
         if was, remove that apple
         :return: (bool) True - yes, False - no
-        '''
+        """
         for i in self.rotten_list:
             if self.snake.center_x == i.center_x and self.snake.center_y == i.center_y:
                 i.remove_from_sprite_lists()
@@ -84,10 +86,10 @@ class MyGame2(arcade.View):
         return False
 
     def heart_lose(self):
-        '''
+        """
         If live was lost, remove heart spirit,
         if there is no more heart, end game
-        '''
+        """
         if self.live > 1:
             self.heart_list.pop()
             self.live -= 1
@@ -128,9 +130,9 @@ class MyGame2(arcade.View):
             self.snake.bad_direction = False
 
     def before_direction(self):
-        '''
+        """
         Change direction for opposite one
-        '''
+        """
         index = self.direction_list.index(True)
         self.direction_list[index] = False
         if index == 0:

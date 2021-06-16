@@ -25,7 +25,9 @@ class MyGame(arcade.View):
         self.level = "level1"
 
     def setup(self):
-        """ Set up the game and initialize the variables. """
+        """
+        Set up the game and initialize the variables.
+        """
         self.snake = snake_class.Snake(GAME_WIDTH / 2, GAME_HEIGHT / 2)
         self.apple = apple.Apple(APPLE["good_apple"], 0.5)
         self.apple.new_apple(GAME_WIDTH, GAME_HEIGHT, MOVEMENT_SPEED, self.snake.snake_body())
@@ -49,7 +51,9 @@ class MyGame(arcade.View):
         arcade.draw_text(output, 16, 540, arcade.color.BLACK, 25)
 
     def on_update(self, delta_time):
-        """ Movement and game logic """
+        """
+        Movement and game logic
+        """
         self.snake.change_x = 0
         self.snake.change_y = 0
         if self.apple.new_apple_ate(GAME_WIDTH, GAME_HEIGHT, MOVEMENT_SPEED, self.snake.center_x, self.snake.center_y,
@@ -75,9 +79,9 @@ class MyGame(arcade.View):
             self.snake.bad_direction = False
 
     def before_direction(self):
-        '''
+        """
         Change direction for opposite one
-        '''
+        """
         index = self.direction_list.index(True)
         self.direction_list[index] = False
         if index == 0:

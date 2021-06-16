@@ -30,6 +30,9 @@ class GameOverView(arcade.View):
                                 SCREEN_WIDTH, SCREEN_HEIGHT)
 
     def sound_stop(self):
+        """
+        If sound exists, stop that sound
+        """
         try:
             arcade.stop_sound(self.sound)
         except:
@@ -41,7 +44,7 @@ class GameOverView(arcade.View):
         self.sound_stop()
 
     def on_show_view(self):
-        ''' Call when this view is shown '''
+        """ Call when this view is shown """
         self.sound = arcade.play_sound(SOUNDS["dead"])
         self.setup()
 
